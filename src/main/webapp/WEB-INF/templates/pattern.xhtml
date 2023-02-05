@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+   <f:facet name="first">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   </f:facet>
+
+   <h:outputStylesheet library="css" name="w3.css"/>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+   <link rel="icon" href="#{resource['pictures/rapture-00.png']}"/>
+   <ui:insert name="head">
+      <title>Лабораторная работа #3</title>
+   </ui:insert>
+</h:head>
+
+<h:body>
+   <header class="w3-container w3-teal">
+      <span class="w3-show-inline-block">
+        <h:link styleClass="w3-image" outcome="goToWelcome">
+            <h:graphicImage value="/resources/pictures/rapture-01.png" height="60"/>
+        </h:link>
+      </span>
+      <span class="w3-show-inline-block">
+          Лабораторная работа #3, Вариант #121013, Румский А.М. Р32121
+      </span>
+   </header>
+
+   <ui:insert name="main">
+      Основное содержимое страницы
+   </ui:insert>
+
+    <footer class="w3-bottom w3-center w3-teal">
+        <h3>All rights not reserved</h3>
+    </footer>
+
+</h:body>
+
+</html>

@@ -1,0 +1,28 @@
+@font-face {
+    font-family: FontForDate;
+    src: url("digital-7.regular.ttf");
+}
+footer{
+    background-color: #0A3409;
+    text-align: center;
+    font-size: large;
+    font-family: Sofia, serif;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height:fit-content
+}
+
+._time{
+    font-family: FontForDate;
+    font-size: 60px;
+}
+._date{
+    font-family: FontForDate;
+    font-size: 60px;
+}
+
+
+
