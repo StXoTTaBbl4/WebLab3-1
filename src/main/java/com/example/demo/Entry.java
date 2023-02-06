@@ -5,21 +5,33 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
-@Entity
+@Entity(name = "Entry")
+@Table(name = "hits")
 public class Entry implements Serializable {
 
     @Id
     @SequenceGenerator(name = "jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
+    @Column(name = "UID")
     private int id;
-
+    @Column(name = "xCoordinate")
     private Double xValue;
+    @Column(name = "yCoordinate")
     private Double yValue;
+    @Column(name = "r")
     private Double rValue;
-    private String hitResult;
+    @Column(name = "isHit")
+    private boolean hitResult;
 
-    public Entry() { }
+    @Column(name = "currDTime")
+    private Date currentDateTime;
+    @Column(name = "execTime")
+    private int execTime;
+
+    public Entry(){}
 
     private boolean checkTriangle() {
         return xValue >=0 && yValue >=0 && (yValue + xValue <= rValue);
@@ -34,7 +46,7 @@ public class Entry implements Serializable {
     }
 
     public void checkHit() {
-        hitResult = checkTriangle() || checkRectangle() || checkCircle() ? "Попадание" : "Промах";
+        hitResult = checkTriangle() || checkRectangle() || checkCircle();
     }
 
     public int getId() {
@@ -58,7 +70,7 @@ public class Entry implements Serializable {
     }
 
     public void setyValue(Double yValue) {
-        this.yValue = Math.round(yValue*1000.0)/1000.0;;
+        this.yValue = Math.round(yValue*1000.0)/1000.0;
     }
 
     public Double getrValue() {
@@ -66,15 +78,31 @@ public class Entry implements Serializable {
     }
 
     public void setrValue(Double rValue) {
-        this.rValue = Math.round(rValue*1000.0)/1000.0;;
+        this.rValue = Math.round(rValue*1000.0)/1000.0;
     }
 
-    public String getHitResult() {
+    public Boolean getHitResult() {
         return hitResult;
     }
 
-    public void setHitResult(String hitResult) {
+    public void setHitResult(boolean hitResult) {
         this.hitResult = hitResult;
+    }
+
+    public Date getCurrentDateTime() {
+        return currentDateTime;
+    }
+
+    public void setCurrentDateTime(Date currentDateTime) {
+        this.currentDateTime = currentDateTime;
+    }
+
+    public long getExecTime() {
+        return execTime;
+    }
+
+    public void setExecTime(int execTime) {
+        this.execTime = execTime;
     }
 
     @Override

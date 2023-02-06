@@ -6,6 +6,10 @@ import jakarta.enterprise.inject.Model;
 import jakarta.faces.context.FacesContext;
 import jakarta.persistence.*;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +18,12 @@ import java.util.Map;
 @Model
 @ApplicationScoped
 public class EntriesBean implements Serializable {
-    private static final String persistenceUnit = "StudsPU";
 
     private Entry entry;
     private List<Entry> entries;
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private EntityTransaction transaction;
+    private Session session;
+    private Transaction transaction;
 
     public EntriesBean() {
         entry = new Entry();
@@ -32,31 +34,31 @@ public class EntriesBean implements Serializable {
     }
 
     private void connection() {
-        entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);
-        entityManager = entityManagerFactory.createEntityManager();
-        transaction = entityManager.getTransaction();
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        session = sessionFactory.openSession();
+        transaction = session.getTransaction();
     }
 
     private void loadEntries() {
         try {
             transaction.begin();
-            Query query = entityManager.createQuery("SELECT e FROM Entry e");
+            Query query = session.createQuery( " FROM Entry", Entry.class);
             entries = query.getResultList();
             transaction.commit();
+            System.out.println("Reading student records...");
         } catch (RuntimeException exception) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             throw exception;
         }
-
     }
 
     public void addEntry() {
         try {
             transaction.begin();
             entry.checkHit();
-            entityManager.persist(entry);
+            session.persist(entry);
             entries.add(entry);
             entry = new Entry();
             transaction.commit();
@@ -81,7 +83,7 @@ public class EntriesBean implements Serializable {
             System.out.println(paramMap.get("y"));
             System.out.println(paramMap.get("r"));
             entry.checkHit();
-            entityManager.persist(entry);
+            session.persist(entry);
             entries.add(entry);
             entry=new Entry();
             transaction.commit();
@@ -96,7 +98,7 @@ public class EntriesBean implements Serializable {
     public String clearEntries() {
         try {
             transaction.begin();
-            Query query = entityManager.createQuery("DELETE FROM Entry");
+            Query query = session.createQuery("DELETE FROM Entry", Entry.class);
             query.executeUpdate();
             entries.clear();
             transaction.commit();
