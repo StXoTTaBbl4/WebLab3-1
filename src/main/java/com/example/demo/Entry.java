@@ -26,11 +26,6 @@ public class Entry implements Serializable {
     @Column(name = "isHit")
     private boolean hitResult;
 
-    @Column(name = "currDTime")
-    private Date currentDateTime;
-    @Column(name = "execTime")
-    private int execTime;
-
     public Entry(){}
 
     private boolean checkTriangle() {
@@ -87,22 +82,6 @@ public class Entry implements Serializable {
 
     public void setHitResult(boolean hitResult) {
         this.hitResult = hitResult;
-    }
-
-    public Date getCurrentDateTime() {
-        return currentDateTime;
-    }
-
-    public void setCurrentDateTime(Date currentDateTime) {
-        this.currentDateTime = currentDateTime;
-    }
-
-    public long getExecTime() {
-        return execTime;
-    }
-
-    public void setExecTime(int execTime) {
-        this.execTime = execTime;
     }
 
     @Override

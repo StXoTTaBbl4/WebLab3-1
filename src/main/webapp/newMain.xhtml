@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <f:facet name="first">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </f:facet>
+
+    <h:outputStylesheet library="css" name="w3.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" type="javascript"></script>
+    <link rel="icon" href="#{resource['pictures/rapture-00.png']}"/>
+    <ui:insert name="head">
+        <title>Лабораторная работа #3</title>
+    </ui:insert>
+</h:head>
+<h:body>
+    <header class="w3-container w3-teal">
+      <span class="w3-show-inline-block">
+        <h:link styleClass="w3-image" outcome="goToWelcome">
+            <h:graphicImage value="/resources/pictures/rapture-01.png" height="60"/>
+        </h:link>
+      </span>
+        <span class="w3-show-inline-block">
+          Лабораторная работа #3, Вариант #121013, Румский А.М. Р32121
+      </span>
+    </header>
+    <main class="w3-container w3-center" style="padding: 0;">
+        <div class="w3-container" style="background-color: #6CB8A0; "><h1 >Лабораторная работа №3 - Основная страница</h1></div>
+
+        <div id="data" class="w3-half w3-left">
+
+            <section class="w3-right" style="margin-top: 25px">
+                <h:form>
+                    <div class="w3-container">
+                        <h:outputLabel for="x-text" value="X"/>
+                        <h:inputText  id="x-text"
+                                      maxlength="5" autocomplete="off" a:placeholder="Число от -3 до 3..."
+                                      value="#{entriesBean.entry.xValue}">
+                            <f:validateRequired/>
+                            <f:validateDoubleRange minimum="-3" maximum="3"/>
+                        </h:inputText>
+                    </div>
+
+                    <div class="w3-container" style="margin-top: 25px">
+                        <h:outputLabel  value="Y"/>
+                        <ul>
+                            <li >
+                                <h:commandButton  id="y-button1"
+                                                  type="button" value="-3"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button2"
+                                                  type="button" value="-2" />
+                            </li>
+                            <li>
+                                <h:commandButton  id="y-button3"
+                                                  type="button" value="-1"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button4"
+                                                  type="button" value="0"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button5"
+                                                  type="button" value="1" />
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button6"
+                                                  type="button" value="2"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button7"
+                                                  type="button" value="3"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button8"
+                                                  type="button" value="4"/>
+                            </li>
+                            <li >
+                                <h:commandButton  id="y-button9"
+                                                  type="button" value="5"/>
+                            </li>
+                        </ul>
+
+                        <h:panelGroup styleClass="w3-container" id="hiddentInput">
+                            <h:inputHidden value="#{entriesBean.entry.yValue}">
+                                <f:validateRequired/>
+                                <f:validateLongRange minimum="-3" maximum="5"/>
+                            </h:inputHidden>
+                        </h:panelGroup>
+                    </div>
+
+
+
+
+                    <p:growl id="growl" showDetail="true"/>
+                    <h5>R</h5>
+                    <h:panelGrid columns="1" style="margin-bottom: 10px">
+                        <p:inputNumber id="r" value="#{entriesBean.entry.rValue}"
+                                       valueChangeListener="#{entriesBean.rInputChanged}">
+                            <p:ajax process="@this" update="growl"/>
+                        </p:inputNumber>
+                        <p:slider for="r" minValue="2" maxValue="5" step="0.1" range="max"/>
+                    </h:panelGrid>
+
+                    <h:commandButton styleClass="input-form__control-buttons__button input-form__control-buttons__button_submit"
+                                     value="Отправить" action="#{entriesBean.addEntry}" >
+                        <f:ajax execute="@form" render="results"/>
+                    </h:commandButton>
+
+
+
+                    <!--                        <p:inputText id="r-text" value="#{entriesBean.entry.rValue}" />-->
+                    <!--                        <p:slider for="r-text" step="0.1" minValue="2" maxValue="5" />-->
+                    <!--                        -->
+                    <!--                        <input type="range" id="volume"  step="0.1" min="2" max="5" name="r-text" value="#{entriesBean.entry.rValue}"/>-->
+                    <!--                        <label for="volume">R</label>-->
+
+                </h:form>
+            </section>
+
+
+
+            <h:link outcome="goToWelcome">
+                На начальную страницу
+            </h:link>
+        </div>
+
+        <div id="res" class="w3-half w3-right">
+            <h:dataTable id="results" styleClass="result-table" value="#{entriesBean.entries}" var="entry">
+                <h:column headerClass="result-table__column result-table__column_coords">
+                    <f:facet name="header">X</f:facet>
+                    <h:outputText value="#{entry.xValue}"/>
+                </h:column>
+                <h:column headerClass="result-table__column result-table__column_coords">
+                    <f:facet name="header">Y</f:facet>
+                    <h:outputText value="#{entry.yValue}"/>
+                </h:column>
+                <h:column headerClass="result-table__column result-table__column_coords">
+                    <f:facet name="header">R</f:facet>
+                    <h:outputText value="#{entry.rValue}"/>
+                </h:column>
+                <h:column headerClass="result-table__column result-table__column_hitres">
+                    <f:facet name="header">Результат</f:facet>
+                    <h:outputText value="#{entry.hitResult}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </main>
+    <link rel="stylesheet" href="resources/css/style.css"/>
+    <script type="text/javascript" src="resources/js/welcome.js"></script>
+
+    <footer class="w3-bottom w3-center w3-teal">
+        <h3>All rights not reserved</h3>
+    </footer>
+</h:body>
+</html>

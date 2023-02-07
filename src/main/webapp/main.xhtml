@@ -8,99 +8,141 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/pattern.xhtml">
-    <ui:define name="head">
-        <title>Лабораторная работа №3 - Основная страница</title>
-    </ui:define>
+<!--<ui:composition template="WEB-INF/templates/pattern.xhtml">-->
+<!--    <ui:define name="head">-->
+<!--        <title>Лабораторная работа №3 - Основная страница</title>-->
+<!--    </ui:define>-->
 
-    <ui:define name="main">
-        <main class="w3-container w3-center" style="padding: 0;">
-            <div class="w3-container" style="background-color: #6CB8A0; "><h1 >Лабораторная работа №3 - Основная страница</h1></div>
+<!--    <ui:define name="main">-->
+<!--        <main class="w3-container w3-center" style="padding: 0;">-->
+<!--            <div class="w3-container" style="background-color: #6CB8A0; "><h1 >Лабораторная работа №3 - Основная страница</h1></div>-->
 
-            <div id="data" class="w3-half w3-left">
+<!--            <div id="data" class="w3-half w3-left">-->
 
-                <section class="w3-right" style="margin-top: 25px">
-                    <h:form>
-                        <div class="w3-container">
-                            <h:outputLabel for="x-text" value="X"/>
-                            <h:inputText  id="x-text"
-                                         maxlength="5" autocomplete="off" a:placeholder="Число от -3 до 3..."
-                                         value="#{entriesBean.entry.xValue}">
-                                <f:validateRequired/>
-                                <f:validateDoubleRange minimum="-3" maximum="3"/>
-                            </h:inputText>
-                        </div>
+<!--                <section class="w3-right" style="margin-top: 25px">-->
+<!--                    <h:form>-->
+<!--                        <div class="w3-container">-->
+<!--                            <h:outputLabel for="x-text" value="X"/>-->
+<!--                            <h:inputText  id="x-text"-->
+<!--                                         maxlength="5" autocomplete="off" a:placeholder="Число от -3 до 3..."-->
+<!--                                         value="#{entriesBean.entry.xValue}">-->
+<!--                                <f:validateRequired/>-->
+<!--                                <f:validateDoubleRange minimum="-3" maximum="3"/>-->
+<!--                            </h:inputText>-->
+<!--                        </div>-->
 
-                        <div class="w3-container" style="margin-top: 25px">
-                            <h:outputLabel  value="Y"/>
-                            <ul>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button1"
-                                                      type="button" value="-3"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button2"
-                                                      type="button" value="-2"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button3"
-                                                      type="button" value="-1"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button4"
-                                                      type="button" value="0"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button5"
-                                                     type="button" value="1" />
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button6"
-                                                     type="button" value="2"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button7"
-                                                     type="button" value="3"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button8"
-                                                     type="button" value="4"/>
-                                </li>
-                                <li class="w3-button">
-                                    <h:commandButton  id="y-button9"
-                                                     type="button" value="5"/>
-                                </li>
-                            </ul>
-                        </div>
+<!--                        <div class="w3-container" style="margin-top: 25px">-->
+<!--                            <h:outputLabel  value="Y"/>-->
+<!--                            <ul>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button1"-->
+<!--                                                      type="button" value="-3"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button2"-->
+<!--                                                      type="button" value="-2" />-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <h:commandButton  id="y-button3"-->
+<!--                                                      type="button" value="-1"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button4"-->
+<!--                                                      type="button" value="0"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button5"-->
+<!--                                                     type="button" value="1" />-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button6"-->
+<!--                                                     type="button" value="2"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button7"-->
+<!--                                                     type="button" value="3"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button8"-->
+<!--                                                     type="button" value="4"/>-->
+<!--                                </li>-->
+<!--                                <li >-->
+<!--                                    <h:commandButton  id="y-button9"-->
+<!--                                                     type="button" value="5"/>-->
+<!--                                </li>-->
+<!--                            </ul>-->
 
-                        <h:panelGroup styleClass="w3-hide">
-                            <h:inputHidden value="#{entriesBean.entry.yValue}">
-                                <f:validateRequired/>
-                                <f:validateLongRange minimum="-3" maximum="5"/>
-                            </h:inputHidden>
-                        </h:panelGroup>
-
-                        <div class="w3-container">
-                            <p:inputText id="r-text" value="#{entriesBean.entry.rValue}" />
-                            <p:slider for="r-text" step="0.1" minValue="2" maxValue="5"/>
-                        </div>
-                    </h:form>
-                </section>
+<!--                            <h:panelGroup styleClass="w3-container" id="hiddentInput">-->
+<!--                                <h:inputHidden value="#{entriesBean.entry.yValue}">-->
+<!--                                    <f:validateRequired/>-->
+<!--                                    <f:validateLongRange minimum="-3" maximum="5"/>-->
+<!--                                </h:inputHidden>-->
+<!--                            </h:panelGroup>-->
+<!--                        </div>-->
 
 
 
-                <h:link outcome="goToWelcome">
-                    На начальную страницу
-                </h:link>
-            </div>
 
-            <div id="results" class="w3-half w3-right">
+<!--                        <p:growl id="growl" showDetail="true"/>-->
+<!--                        <h5>R</h5>-->
+<!--                        <h:panelGrid columns="1" style="margin-bottom: 10px">-->
+<!--                            <p:inputNumber id="r" value="#{sliderView.number3}" symbol=" €"-->
+<!--                                           valueChangeListener="#{sliderView.onInputChanged}">-->
+<!--                                <p:ajax process="@this" update="growl"/>-->
+<!--                            </p:inputNumber>-->
+<!--                            <p:slider for="r" minValue="0.2" maxValue="7.1" step="0.1" range="max"/>-->
+<!--                        </h:panelGrid>-->
 
-            </div>
-        </main>
+<!--                        <h:commandButton styleClass="input-form__control-buttons__button input-form__control-buttons__button_submit"-->
+<!--                                         value="Отправить" action="#{entriesBean.addEntry}" >-->
+<!--                            <f:ajax execute="@form" render="results"/>-->
+<!--                        </h:commandButton>-->
 
-        <link rel="stylesheet" href="resources/css/style.css"/>
-        <script type="text/javascript" src="resources/js/main.js"></script>
-    </ui:define>
-</ui:composition>
+
+
+<!--&lt;!&ndash;                        <p:inputText id="r-text" value="#{entriesBean.entry.rValue}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p:slider for="r-text" step="0.1" minValue="2" maxValue="5" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        &ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="range" id="volume"  step="0.1" min="2" max="5" name="r-text" value="#{entriesBean.entry.rValue}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="volume">R</label>&ndash;&gt;-->
+
+<!--                    </h:form>-->
+<!--                </section>-->
+
+
+
+<!--                <h:link outcome="goToWelcome">-->
+<!--                    На начальную страницу-->
+<!--                </h:link>-->
+<!--            </div>-->
+
+<!--            <div id="res" class="w3-half w3-right">-->
+<!--                    <h:dataTable id="results" styleClass="result-table" value="#{entriesBean.entries}" var="entry">-->
+<!--                        <h:column headerClass="result-table__column result-table__column_coords">-->
+<!--                            <f:facet name="header">X</f:facet>-->
+<!--                            <h:outputText value="#{entry.xValue}"/>-->
+<!--                        </h:column>-->
+<!--                        <h:column headerClass="result-table__column result-table__column_coords">-->
+<!--                            <f:facet name="header">Y</f:facet>-->
+<!--                            <h:outputText value="#{entry.yValue}"/>-->
+<!--                        </h:column>-->
+<!--                        <h:column headerClass="result-table__column result-table__column_coords">-->
+<!--                            <f:facet name="header">R</f:facet>-->
+<!--                            <h:outputText value="#{entry.rValue}"/>-->
+<!--                        </h:column>-->
+<!--                        <h:column headerClass="result-table__column result-table__column_hitres">-->
+<!--                            <f:facet name="header">Результат</f:facet>-->
+<!--                            <h:outputText value="#{entry.hitResult}"/>-->
+<!--                        </h:column>-->
+<!--                    </h:dataTable>-->
+<!--            </div>-->
+<!--        </main>-->
+
+
+
+<!--        <link rel="stylesheet" href="resources/css/style.css"/>-->
+<!--        <h:outputScript name="jquery-3.6.3.min.js" library="js"></h:outputScript>-->
+<!--        <script type="text/javascript" src="resources/js/welcome.js"></script>-->
+<!--    </ui:define>-->
+<!--</ui:composition>-->
 </html>

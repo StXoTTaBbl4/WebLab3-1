@@ -15,7 +15,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: jakarta.mvc:jakarta.mvc-api:2.0.0" />
-          <element id="library" level="project" name="Maven: org.primefaces:primefaces:jakarta:11.0.0" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:jakarta:12.0.0" />
           <element id="library" level="project" name="Maven: com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20220608.1" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:30.1-jre" />
           <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0.1" />

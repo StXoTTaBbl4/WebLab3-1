@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+   <f:facet name="first">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   </f:facet>
+
+   <h:outputStylesheet library="css" name="w3.css"/>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js" type="javascript"></script>
+   <link rel="icon" href="#{resource['pictures/rapture-00.png']}"/>
+   <ui:insert name="head">
+      <title>Лабораторная работа #3</title>
+   </ui:insert>
+</h:head>
+<h:body>
+   <header class="w3-container w3-teal">
+      <span class="w3-show-inline-block">
+        <h:link styleClass="w3-image" outcome="goToWelcome">
+            <h:graphicImage value="/resources/pictures/rapture-01.png" height="60"/>
+        </h:link>
+      </span>
+      <span class="w3-show-inline-block">
+          Лабораторная работа #3, Вариант #121013, Румский А.М. Р32121
+      </span>
+   </header>
+   <main class="w3-container w3-center" style="padding: 0;">
+      <div class="w3-container" style="background-color: #6CB8A0; "><h1 >Лабораторная работа №3 - Стартовая страница</h1></div>
+
+      <section class="w3-container" style="margin-top: 50px">
+         <h2 class="visually-hidden">Стартовая страница</h2>
+
+         <p class="datetime">
+            <span class="_time"></span>
+            <br/>
+            <span class="_date" ></span>
+         </p>
+
+         <div class="index-menu">
+            <h:link outcome="goToMain">
+               На основную страницу
+            </h:link>
+         </div>
+      </section>
+
+      <h5 class="mt-0">Basic</h5>
+      <h:panelGrid columns="1" style="margin-bottom: 10px">
+         <p:inputText id="txt" value="#{sliderView.number1}"/>
+         <p:slider for="txt" range="false"/>
+      </h:panelGrid>
+   </main>
+   <link rel="stylesheet" href="resources/css/style.css"/>
+   <script type="text/javascript" src="resources/js/welcome.js"></script>
+
+   <footer class="w3-bottom w3-center w3-teal">
+      <h3>All rights not reserved</h3>
+   </footer>
+</h:body>
+</html>

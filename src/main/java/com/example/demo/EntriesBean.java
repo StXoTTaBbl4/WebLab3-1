@@ -3,7 +3,9 @@ package com.example.demo;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Model;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ValueChangeEvent;
 import jakarta.persistence.*;
 
 import org.hibernate.Session;
@@ -31,6 +33,8 @@ public class EntriesBean implements Serializable {
 
         connection();
         loadEntries();
+
+        System.out.println("DB connection established");
     }
 
     private void connection() {
@@ -45,7 +49,7 @@ public class EntriesBean implements Serializable {
             Query query = session.createQuery( " FROM Entry", Entry.class);
             entries = query.getResultList();
             transaction.commit();
-            System.out.println("Reading student records...");
+            //System.out.println("Reading student records..." + "Length of elements: " + entries.size() + " Hit 1 elem: " + entries.get(0).getHitResult());
         } catch (RuntimeException exception) {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -55,7 +59,11 @@ public class EntriesBean implements Serializable {
     }
 
     public void addEntry() {
+        System.out.println("Add method invoked");
         try {
+            System.out.println(entry.getxValue());
+            System.out.println(entry.getyValue());
+            System.out.println(entry.getrValue());
             transaction.begin();
             entry.checkHit();
             session.persist(entry);
@@ -109,6 +117,11 @@ public class EntriesBean implements Serializable {
             throw exception;
         }
         return "redirect";
+    }
+
+    public void rInputChanged(ValueChangeEvent event) {
+        FacesMessage message = new FacesMessage("Input Changed", "Value: " + event.getNewValue());
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public Entry getEntry() {
